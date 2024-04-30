@@ -1,32 +1,23 @@
 import React from "react";
 import User from "./User.js";
 
-const Users = () => {
-    const users = [
-        {
-            id: 1,
-            first_name: 'Daulet',
-            last_name: 'Zumgali',
-            email: 'dauka@gmail.com',
-            isHappy: true
-        },
-        {
-            id: 2,
-            first_name: 'Alikhan',
-            last_name: 'Abylazy',
-            email: 'kotyr@gmail.com',
-            isHappy: true
-        }
-    ]
 
+const Users = (props) => {
+
+    if (props.users.length > 0)
     return (
         <div>
-            {users.map((user) => (
+            {props.users.map((user) => (
                 <User user={user} key={user.id} />
             ))}
         </div>
     )
-}
-
+    else 
+    return (
+        <div className="user">
+            <h3>There are no users</h3>
+        </div>
+    )
+};
 
 export default Users;

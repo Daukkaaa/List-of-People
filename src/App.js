@@ -26,9 +26,8 @@ function App() {
   ])
 
   function globalChange(newUser) {
-    setUsers(prevUsers => {
-      return [...prevUsers, newUser];
-    });
+    const id = users.length + 1
+    setUsers([...users, {id, ...newUser}])
   }
 
   return (

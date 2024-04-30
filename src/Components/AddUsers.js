@@ -23,7 +23,7 @@ const AddUsers = (props) => {
         setIsHappy(e.target.value)
     }
 
-    function AddChange() {
+    function globalChange() {
         const newUser = {
             first_name: first_name,
             last_name: last_name,
@@ -38,7 +38,7 @@ const AddUsers = (props) => {
         setLastName('');
         setEmail('');
         setAvatar('');
-        setIsHappy(true);
+        setIsHappy('');
     }
 
 
@@ -71,7 +71,7 @@ const AddUsers = (props) => {
             value={isHappy}
             onChange={isHappyChange}
         />
-        <button onClick={AddChange} type="button">Add</button>
+        <button onClick={globalChange} type="button">Add</button>
     </form>
   );
 };
