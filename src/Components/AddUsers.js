@@ -29,7 +29,8 @@ const AddUsers = (props) => {
             last_name: last_name,
             email: email,
             avatar: avatar,
-            isHappy: isHappy
+            isHappy: isHappy,
+            id: props.userId
         };
 
         props.onAdd(newUser);
@@ -77,3 +78,5 @@ const AddUsers = (props) => {
 };
 
 export default AddUsers;
+
+

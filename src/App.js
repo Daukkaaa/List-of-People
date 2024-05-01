@@ -4,6 +4,8 @@ import Users from "./Components/Users.js";
 import AddUsers from "./Components/AddUsers.js";
 
 import './css/main.css';
+import { v4 as uuidv4 } from 'uuid';
+
 
 
 
@@ -25,9 +27,32 @@ function App() {
     }
   ])
 
+
+  const [selectedUserId, setSelectedUserId] = useState(null);
+
+
+  function editUser(user) {
+    setSelectedUserId(user.id);
+    setUsers(prevUsers => {
+      return prevUsers.map(prevUser => {
+        if (prevUser.id === user.id) {
+          return user
+        } else {
+          return prevUser
+        }
+      })
+    })
+  }
+
+
   function globalChange(newUser) {
-    const id = users.length + 1
-    setUsers([...users, {id, ...newUser}])
+    const id = uuidv4().split('-')[0];
+    setUsers([...users, {...newUser, id}]);
+  }
+
+
+  function deleteUser(id) {
+    setUsers(users.filter((user) => user.id !== id))
   }
 
   return (
@@ -35,10 +60,10 @@ function App() {
       <Header title="List of People" />
         <div className="container">
           <main>
-           <Users users={users} />
+           <Users users={users} onDelete={deleteUser} onEdit={editUser} />
           </main>
           <aside>
-            <AddUsers onAdd={globalChange} />
+            <AddUsers onAdd={globalChange} userId={selectedUserId} users={users} />
           </aside>
         </div>
     </div>

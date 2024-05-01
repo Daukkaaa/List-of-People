@@ -8,7 +8,7 @@ const Users = (props) => {
     return (
         <div>
             {props.users.map((user) => (
-                <User user={user} key={user.id} />
+                <User user={user} key={user.id} onDelete={props.onDelete} onEdit={props.onEdit} />
             ))}
         </div>
     )
@@ -21,3 +21,5 @@ const Users = (props) => {
 };
 
 export default Users;
+
+
