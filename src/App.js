@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "./Components/Header.js";
 import Users from "./Components/Users.js";
 import AddUsers from "./Components/AddUsers.js";
+import axios from "axios";
 
 import './css/main.css';
 import { v4 as uuidv4 } from 'uuid';
 
 
+const baseUrl = "https://reqres.in/api/users?page=1";
 
 
 function App() {
@@ -26,6 +28,12 @@ function App() {
         isHappy: true
     }
   ])
+
+  useEffect(() => {
+    axios.get(baseUrl).then((res) => {
+      setUsers(res.data.data)
+    })
+  }, [])
 
 
   const [selectedUserId, setSelectedUserId] = useState(null);
